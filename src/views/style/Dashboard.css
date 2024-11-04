@@ -1,0 +1,15 @@
+.container {
+    max-width: 600px;
+  }
+  
+  .card {
+    border-radius: 10px;
+  }
+  
+  img.img-thumbnail {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+  }
+  
