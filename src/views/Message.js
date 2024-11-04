@@ -8,7 +8,7 @@ import moment from 'moment';
 
 function Message() {
 
-  const baseURL = 'http://127.0.0.1:8000/api'
+  const baseURL = `${process.env.REACT_APP_BASE_URL}`
 
   const [messages, setMessages] = useState([])
   let [newSearch, setnewSearch] = useState({search: "",});
