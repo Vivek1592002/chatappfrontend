@@ -27,7 +27,7 @@ const baseURL = `${process.env.REACT_APP_BASE_URL}`
     const history = useHistory();
 
     const loginUser = async (email, password) => {
-        const response = await fetch(`${baseURL}token/`, {
+        const response = await fetch(`${baseURL}/token/`, {
             method: "POST",
             headers:{
                 "Content-Type":"application/json"
