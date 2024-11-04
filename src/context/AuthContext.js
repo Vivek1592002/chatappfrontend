@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
             : null
     );
     
-
+const baseURL = `${process.env.REACT_APP_BASE_URL}`
     const [user, setUser] = useState(() => 
         localStorage.getItem("authTokens")
             ? jwt_decode(localStorage.getItem("authTokens"))
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     const history = useHistory();
 
     const loginUser = async (email, password) => {
-        const response = await fetch("http://127.0.0.1:8000/api/token/", {
+        const response = await fetch(`${baseURL}token/`, {
             method: "POST",
             headers:{
                 "Content-Type":"application/json"
@@ -71,7 +71,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const registerUser = async (email, username, password, password2) => {
-        const response = await fetch("http://127.0.0.1:8000/api/register/", {
+        const response = await fetch(`${baseURL}/register/`, {
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
