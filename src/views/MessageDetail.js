@@ -258,7 +258,7 @@ function MessageDetail() {
                             <div className="font-weight-bold mb-1">{message.sender_profile.full_name}</div>
                             {message.message}
                             <br />
-                              <span className='mt-3'>{moment.utc(message.date).local().startOf('seconds').fromNow()}</span>
+                              <span className="text-muted small text-nowrap mt-2">{moment.utc(message.date).local().startOf('seconds').fromNow()}</span>
                           </div>
                         </div>
                       }
