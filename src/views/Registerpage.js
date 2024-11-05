@@ -1,7 +1,7 @@
 import {useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
-
+import Swal from 'sweetalert2'
 
 function Registerpage() {
 
@@ -11,6 +11,15 @@ function Registerpage() {
   const [password2, setPassword2] = useState("")
 
   const {registerUser} = useContext(AuthContext)
+  const validatePassword = (password) => {
+    const hasUpperCase = /[A-Z]/.test(password)
+    const hasLowerCase = /[a-z]/.test(password)
+    const hasNumber = /\d/.test(password)
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password)
+    const isValidLength = password.length >= 8
+
+    return hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && isValidLength
+  }
 
   console.log(email);
   console.log(username);
@@ -20,6 +29,23 @@ function Registerpage() {
 
   const handleSubmit = async e => {
     e.preventDefault()
+    if (!validatePassword(password)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Password',
+        text: 'Password must be at least 8 characters long and contain an uppercase letter, lowercase letter, number, and special character.',
+      })
+      return
+    }
+
+    if (password !== password2) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Passwords do not match',
+        text: 'Please make sure both password fields match.',
+      })
+      return
+    }
     registerUser(email, username, password, password2)
   }
   
